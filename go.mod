@@ -3,7 +3,7 @@ module github.com/deepquant-labs/deepquant-cex-go-sdk
 go 1.21
 
 require (
-	github.com/rs/zerolog v1.31.0
+	github.com/rs/zerolog v1.34.0
 	github.com/stretchr/testify v1.10.0
 	github.com/valyala/fasthttp v1.51.0
 )

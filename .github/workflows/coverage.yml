@@ -43,7 +43,7 @@ jobs:
         path: coverage.html
     
     - name: Coverage Badge
-      uses: tj-actions/coverage-badge-go@v2
+      uses: tj-actions/coverage-badge-go@v3
       with:
         filename: coverage.out
     

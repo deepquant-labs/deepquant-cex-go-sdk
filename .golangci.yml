@@ -1,0 +1,71 @@
+run:
+  timeout: 5m
+  modules-download-mode: readonly
+
+linters:
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - typecheck
+    - unused
+    - gofmt
+    - goimports
+    - misspell
+    - revive
+    - gosec
+    - unconvert
+    - goconst
+    - gocyclo
+    - gocritic
+    - prealloc
+    - copyloopvar
+    - nolintlint
+  disable:
+    - dupl
+
+linters-settings:
+  gocyclo:
+    min-complexity: 15
+  
+  goconst:
+    min-len: 3
+    min-occurrences: 3
+  
+  gosec:
+    excludes:
+      - G404 # Use of weak random number generator
+      - G101 # Potential hardcoded credentials (false positives for error codes)
+  
+  revive:
+    rules:
+      - name: exported
+        arguments:
+          - "checkPrivateReceivers"
+          - "sayRepetitiveInsteadOfStutters"
+
+issues:
+  exclude-rules:
+    # Exclude some linters from running on tests files.
+    - path: _test\.go
+      linters:
+        - gocyclo
+        - errcheck
+        - dupl
+        - gosec
+        - goconst
+    
+    # Exclude known linters from partially hard-to-fix issues
+    - linters:
+        - gosec
+      text: "G404:"
+    
+    - linters:
+        - revive
+      text: "exported:"
+      path: "examples/"
+  
+  max-issues-per-linter: 0
+  max-same-issues: 0
